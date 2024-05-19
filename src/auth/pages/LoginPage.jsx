@@ -51,7 +51,7 @@ export const LoginPage = () => {
   }
 
   const onGoogleSignIn = () => {
-    console.log('onGoogleSignIn');
+    //console.log('onGoogleSignIn');
     dispath(starGoogleSignIn());//called dispatch action to thunks with
   }
 

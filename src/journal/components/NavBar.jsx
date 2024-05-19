@@ -9,7 +9,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
      const dispath =  useDispatch();
     const onLogout = ()=>{
         dispath(startLogout());
-        console.log('logout');
+       // console.log('logout');
     }
 
 
