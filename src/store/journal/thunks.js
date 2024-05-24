@@ -19,8 +19,9 @@ export const startNewNota = () =>{
         const newNote = {
             title: '',
             body: '',
-            date: new Date().getTime(), //gives the date of the new note
             imageUrls: [], //
+            date: new Date().getTime(), //gives the date of the new note
+            
         }
         const newDoc = doc(collection(FirebaseDb, `${uid}/journal/notes`)); //rute save the notes
         await setDoc(newDoc, newNote);//here send the new note  and router to the database
