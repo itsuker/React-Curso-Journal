@@ -1,23 +1,32 @@
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
+import { Box, Button, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
 import { TurnedInNot } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
+import { SidebarItem } from './SidebarItem';
+import { indexedDBLocalPersistence } from 'firebase/auth';
 
-export const SideBar = ({ drawerWidth = 240 }) => {
+export const SideBar = ({ drawerWidth = 240,changeView,openSideState }) => {
 
-    const { displayName } = useSelector(state => state.auth)
+    const { displayName } = useSelector(state => state.auth) //use selector get diplayname    store/auth/  all from journal carpetal
+    const {notes} = useSelector(state => state.journal) //use selector get notes store/journal  all from journal carpetal
+  //   console.log(notes);
+  
+
+  
     return (
         <Box
             className='animate__animated animate__fadeInTopLeft  animate__medium'
             component='nav'                 //flexShrink no se encogera en menor sm
             sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            onClick={changeView}
         >
 
             {/*permite  abrir o crerra median click este elemento */}
             <Drawer
-                variant='permanent'  //temporary permite  o permanent  permite desparecer
-                open
+               variant='permanent'  //temporary permite  o permanent  permite desparecer
+                open={openSideState}
+                onClose={changeView}
                 sx={{
-                    display: { xs: 'block' },
+                    display: { xs: 'none' ,sm:'block'  },  
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
                 }}
             >
@@ -29,26 +38,19 @@ export const SideBar = ({ drawerWidth = 240 }) => {
                 </Toolbar>
                 <Divider />  {/*Eesto es como hr pero horizonal para dividir 2 parrafos */}
 
-                <List>
-                    {
-                        ['Enero', 'Febrero', 'Marzo', 'Abril'].map(text => (
-                            <ListItem key={text} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon> {/*lista para iconos */}
-                                        <TurnedInNot />
-                                    </ListItemIcon>
-                                    <Grid container>{/*contenido */}
-                                        <ListItemText primary={text} />
-                                        <ListItemText secondary={'Exercitation cillum irure elit consectetur.'} />
-                                    </Grid>
-                                </ListItemButton>
-                            </ListItem>
+                <List  >
+                    {           //index
+                        notes.map((note ,index) => (     //sparcing note to current to destruturin in sidebarItem
+                            
+                            <SidebarItem key={ index } {...note}  />  //here pass elements that are relevant for sidebarItem
+                           
                         ))
+                        
                     }
                 </List>
-
+            
             </Drawer>
 
         </Box>
-    )
-}
+    );
+};

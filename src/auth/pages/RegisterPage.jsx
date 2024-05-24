@@ -8,6 +8,17 @@ import { useForm } from '../../hooks';
 import { startCretingUserWithEmailPassword } from '../../store/auth';
 
 
+const formData = {
+  email: '',
+  password: '',
+  displayName: '',
+
+}
+
+
+
+
+
 
 export const RegisterPage = () => {
 
@@ -16,12 +27,7 @@ export const RegisterPage = () => {
   const { status,errorMessage} =  useSelector(state => state.auth);
   const isCheckingAuthentication = useMemo(()=>status === 'checking' , [status]);
 
-  const formData = {
-    email: '',
-    password: '',
-    displayName: '',
 
-  }
 
   const formValidations = {
       email: [   ( value) => value.includes('@')  ,'the email must have @'], //the email must have @

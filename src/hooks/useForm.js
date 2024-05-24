@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
                                          //formvalidations is coming of RegisterPage component
-export const useForm = (initialForm = {} , formValidations = {}) => { //this arguments are objets 
+export const useForm = (initialForm = {}  , formValidations = {}) => { //this arguments are objets 
 
     const [formState, setFormState] = useState(initialForm);
     const [formValidation, setFormValidation] = useState({});
@@ -8,6 +8,15 @@ export const useForm = (initialForm = {} , formValidations = {}) => { //this arg
     useEffect(() => {
         createrValidators();
     }, [formState]);
+    //this recomendacion using one effect to minupulate elements frm the state
+    
+    
+    useEffect(() => {
+        setFormState(initialForm);
+    }, [initialForm]);
+
+    
+    
 
    const isFormValid = useMemo(() => { //this is a function tha return true or false depending condicion
             for (const formValues of Object.keys(formValidation)) {
@@ -48,7 +57,6 @@ export const useForm = (initialForm = {} , formValidations = {}) => { //this arg
         formState,
         onInputChange,
         onResetForm,
-
         ...formValidation, //send all a copy of the state
         isFormValid
     }

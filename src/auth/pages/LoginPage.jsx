@@ -10,6 +10,11 @@ import { useForm } from '../../hooks';
 import { checkingAuthentication, starGoogleSignIn, starLoginWithEmilPassword } from '../../store/auth'; 
 
 
+const formData = {
+  email: '',
+  password: '',
+}
+
 
 export const LoginPage = () => {
   
@@ -32,12 +37,9 @@ export const LoginPage = () => {
    
   }, [errorMessage])*/
 
-  
 
-  const { email, password, onInputChange, formState } = useForm({ //use customHooks here
-    email: '',
-    password: '',
-  })
+
+  const { email, password, onInputChange } = useForm(formData ); //use customHooks here)
 
 
   const isAuthenticated = useMemo(() => status === 'checking', [status]); //yes equal to 'checking' no changed ,but is different changed buttons 

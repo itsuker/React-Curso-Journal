@@ -1,17 +1,25 @@
+import { useState } from 'react';
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import { LogoutOutlined, MenuOutlined } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { startLogout } from '../../store/auth/thunks';
+import { SideBar } from './SideBar';
+
 
 
 export const NavBar = ({ drawerWidth = 240 }) => {
+    const [openSidebar, setOpenSidebar] = useState(false);
 
-     const dispath =  useDispatch();
-    const onLogout = ()=>{
+    const dispath = useDispatch();
+
+    const onLogout = () => {
         dispath(startLogout());
        // console.log('logout');
     }
-
+    const changeSidebar= () =>{
+        //console.log('change sidebar');
+        setOpenSidebar(!openSidebar);
+    }
 
 
     return (
@@ -24,9 +32,10 @@ export const NavBar = ({ drawerWidth = 240 }) => {
         >
         <Toolbar>
             <IconButton
+                onClick={changeSidebar}
                 color='inherit' //hereda elementos
                 edge="start" //posicion
-                sx={{ mr: 2, display: { sm: 'none' } }}
+                sx={{ mr: 2/*, display: { sm: 'none' }*/ }}
             >
                 <MenuOutlined />
             </IconButton>
@@ -42,8 +51,10 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                     <LogoutOutlined /> {/* icono de salir  */}
                 </IconButton>
             </Grid>
-
+            <SideBar  changeView={changeSidebar} openSideState={openSidebar}></SideBar> 
+            
         </Toolbar>
+      
         </AppBar>
     )
 }
