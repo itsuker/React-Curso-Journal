@@ -13,6 +13,24 @@ export const SideBar = ({ drawerWidth = 240,changeView,openSideState }) => {
 
   
     return (
+
+
+        <Drawer
+               // variant="persistent"
+              //  variant='permanent'  //temporary permite  o permanent  permite desparecer
+                open={openSideState}
+                onClose={changeView}
+                /**         
+                 * 
+                 * 
+                 * 
+                 */
+                sx={{
+                    display: {sm:'block'  },  
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
+                }}
+            >
+
         <Box
             className='animate__animated animate__fadeInTopLeft  animate__medium'
             component='nav'                 //flexShrink no se encogera en menor sm
@@ -21,15 +39,7 @@ export const SideBar = ({ drawerWidth = 240,changeView,openSideState }) => {
         >
 
             {/*permite  abrir o crerra median click este elemento */}
-            <Drawer
-               variant='permanent'  //temporary permite  o permanent  permite desparecer
-                open={openSideState}
-                onClose={changeView}
-                sx={{
-                    display: { xs: 'none' ,sm:'block'  },  
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
-                }}
-            >
+            
                 {/*Agrupador de elements */}
                 <Toolbar>
                     <Typography variant='h6' noWrap component='div'> {/*tipo de letra */}
@@ -49,8 +59,9 @@ export const SideBar = ({ drawerWidth = 240,changeView,openSideState }) => {
                     }
                 </List>
             
-            </Drawer>
+            
 
-        </Box>
+            </Box>
+        </Drawer>
     );
 };

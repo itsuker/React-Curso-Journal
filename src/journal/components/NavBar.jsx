@@ -24,11 +24,12 @@ export const NavBar = ({ drawerWidth = 240 }) => {
 
     return (
         <AppBar
+        /*
             position='fixed'
             sx={{
                 width: { sm: `calc(100% - ${drawerWidth}px)` }, //esto es menos el ancho de las props
                 ml: { sm: `${drawerWidth}px` }
-            }}
+            }}*/
         >
         <Toolbar>
             <IconButton

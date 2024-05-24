@@ -7,7 +7,7 @@ const drawerWidth = 280;
 
 export const JournalLayout = ({ children }) => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box  sx={{ display: 'flex' }}>
       
          {/*Navbar drawerWidth  resive drawerWidth  al component*/}
         <NavBar drawerWidth={ drawerWidth } />
@@ -15,6 +15,7 @@ export const JournalLayout = ({ children }) => {
         <SideBar drawerWidth={ drawerWidth } />
 
         <Box 
+        
             component='main' //Esto es como la etiqueta main
             sx={{ flexGrow: 1, p: 3 }}  //esto lo aplica globalmente
         >

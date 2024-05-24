@@ -67,7 +67,7 @@ export const NoteView = () => {
     direction='row' 
     justifyContent='space-between'
     alignItems='center'
-    sx={{ mb: 1 }}>
+    sx={{ mb: 1 } }>
         <Grid item>
             <Typography fontSize={ 30 } fontWeight='light' >{dateString}</Typography>
         </Grid>
